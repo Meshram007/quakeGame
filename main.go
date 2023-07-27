@@ -35,7 +35,21 @@ func readLogFile(filename string) []string {
 	return lines
 }
 
+// convertToMeansOfDeath calculates the total kills by each means of death across all games.
+func convertToMeansOfDeath(games map[string]GameStats) map[string]map[string]int {
+	meansOfDeath := make(map[string]map[string]int)
 
+	for _, gameStats := range games {
+		for weapon, count := range gameStats.KillsByMeans {
+			if meansOfDeath[weapon] == nil {
+				meansOfDeath[weapon] = make(map[string]int)
+			}
+			meansOfDeath[weapon]["kills"] += count
+		}
+	}
+
+	return meansOfDeath
+}
 
 // extractUsefulInfo extracts useful information from the log file and generates game statistics.
 func extractUsefulInfo(lines []string) map[string]GameStats {
