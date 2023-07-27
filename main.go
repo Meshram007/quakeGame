@@ -142,3 +142,17 @@ func extractUsefulInfo(lines []string) map[string]GameStats {
 	return games
 }
 
+func main() {
+	filename := "assets/logs/qgames.log"
+	lines := readLogFile(filename)
+	games := extractUsefulInfo(lines)
+
+	// Convert games to JSON
+	jsonData, err := json.MarshalIndent(games, "", "  ")
+	if err != nil {
+		log.Fatal("Error marshaling JSON:", err)
+	}
+
+	// Print JSON data to the terminal
+	fmt.Println(string(jsonData))
+}
