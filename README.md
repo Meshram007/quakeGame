@@ -28,6 +28,11 @@ Follow these steps to get started with the Quake game log parser:
 3. Output the project:
 
    ```bash
+   .
+   .
+   .
+   .
+   .
    "game_22": {
    "total_kills": 0,
    "players": [
